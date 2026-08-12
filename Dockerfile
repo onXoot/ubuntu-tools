@@ -18,9 +18,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
         /etc/apt/sources.list.d/ubuntu.sources \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        wget \
-        curl \
-        jq \
+        wget curl jq file \
         iputils-ping \
         iproute2 \
         procps \
@@ -45,8 +43,13 @@ ENV UV_CACHE_DIR=/root/cache/uv \
 
 COPY node-v24.19.0-linux-x64 /opt/node/
 ENV NODE_HOME=/opt/node
+ENV PATH=$NODE_HOME/bin:$PATH
 
-RUN echo 'export PATH=$PATH:$NODE_HOME/bin' >> /etc/bash.bashrc
+# 安装claude code  2.1.228 
+RUN npm i -g @anthropic-ai/claude-agent-sdk@0.3.228 \
+	&& mv /opt/node/lib/node_modules/\@anthropic-ai/claude-agent-sdk/node_modules/\@anthropic-ai/claude-agent-sdk-linux-x64/claude /usr/bin/ \
+	&& npm uninstall -g @anthropic-ai/claude-agent-sdk@0.3.228 \
+	&& rm -rf /opt/node/lib/node_modules/\@anthropic-ai/ 
 
 
 # 保持容器存活，进入容器用 kubectl exec / docker exec 起 bash
