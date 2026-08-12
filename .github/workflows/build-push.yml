@@ -6,7 +6,8 @@ on:
       - 'v*'
 
 env:
-  IMAGE: ghcr.io/onxoot/ubuntu-tools
+  # 使用仓库属主/仓库名动态生成镜像地址，避免硬编码
+  IMAGE: ghcr.io/${{ github.repository }}
 
 jobs:
   build:
@@ -38,7 +39,7 @@ jobs:
         with:
           registry: ghcr.io
           # GITHUB_TOKEN 登录 GHCR 时，用户名必须是仓库属主
-          username: onXoot
+          username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
