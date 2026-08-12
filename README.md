@@ -6,9 +6,8 @@
 
 镜像托管在 GitHub Container Registry（GHCR）：
 
-**`ghcr.io/onxoot/ubuntu-tools:latest`**
+**`ghcr.io/onxoot/ubuntu-tools`**（[镜像页面](https://github.com/users/onxoot/packages/container/package/ubuntu-tools)）
 
-- 镜像页面：<https://github.com/users/onxoot/packages/container/package/ubuntu-tools>
 - 源码仓库：<https://github.com/onXoot/ubuntu-tools>
 
 ## 使用
