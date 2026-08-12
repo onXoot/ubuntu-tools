@@ -37,7 +37,8 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
+          # GITHUB_TOKEN 登录 GHCR 时，用户名必须是仓库属主
+          username: onXoot
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
