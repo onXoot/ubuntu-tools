@@ -51,6 +51,12 @@ RUN npm i -g @anthropic-ai/claude-agent-sdk@0.3.228 \
 	&& npm uninstall -g @anthropic-ai/claude-agent-sdk@0.3.228 \
 	&& rm -rf /opt/node/lib/node_modules/\@anthropic-ai/ 
 
+# 安装codex 
+RUN npm i -g @openai/codex-sdk@0.147.0  \
+	&& mv /opt/node/lib/node_modules/\@openai/codex-sdk/node_modules/\@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/bin/codex /usr/bin/ \
+	&& npm uninstall -g @openai/codex-sdk@0.147.0  \
+	&& rm -rf  /opt/node/lib/node_modules/\@openai
+
 
 # 保持容器存活，进入容器用 kubectl exec / docker exec 起 bash
 ENTRYPOINT ["sleep", "infinity"]

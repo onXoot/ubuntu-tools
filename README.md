@@ -1,6 +1,6 @@
 # ubuntu-tools
 
-基于 `ubuntu:26.04` 的常用工具镜像，内置 Python 3、Node.js、uv 包管理器，默认时区 `Asia/Shanghai`。
+基于 `ubuntu:26.04` 的常用工具镜像，内置 Python 3、Node.js、uv 包管理器、Claude Code、Codex，默认时区 `Asia/Shanghai`。
 
 ## 镜像
 
@@ -30,7 +30,9 @@ docker run --rm --entrypoint sh ghcr.io/onxoot/ubuntu-tools:latest -c 'date'
 | Python 3 | `/usr/bin/python3`，并软链为 `/usr/bin/python` |
 | uv | Python 包管理器（`uv` / `uvx`），pypi 源为清华 TUNA |
 | Node.js | v24.19.0，位于 `/opt/node`，`NODE_HOME=/opt/node` |
-| 常用工具 | `wget` `curl` `jq` `iputils-ping` `iproute2` `procps` `lsof` |
+| Claude Code | v2.1.228，位于 `/usr/bin/claude` |
+| Codex | v0.147.0（OpenAI），位于 `/usr/bin/codex` |
+| 常用工具 | `wget` `curl` `jq` `file` `iputils-ping` `iproute2` `procps` `lsof` |
 
 ## 构建
 
