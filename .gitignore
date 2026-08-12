@@ -1,0 +1,8 @@
+# node 运行时目录
+node-v24.19.0-linux-x64/
+
+# node 源码包
+node-v24.19.0-linux-x64.tar.xz
+
+# docker 镜像导出包
+*.tgz
