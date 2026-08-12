@@ -8,7 +8,7 @@
 
 **`ghcr.io/onxoot/ubuntu-tools:latest`**
 
-- 镜像页面：<https://github.com/onXoot/ubuntu-tools/pkgs/container/ubuntu-tools>
+- 镜像页面：<https://github.com/users/onxoot/packages/container/package/ubuntu-tools>
 - 源码仓库：<https://github.com/onXoot/ubuntu-tools>
 
 ## 使用
