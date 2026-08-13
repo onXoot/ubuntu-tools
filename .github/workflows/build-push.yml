@@ -7,7 +7,7 @@ on:
 
 env:
   # 使用仓库属主/仓库名动态生成镜像地址，避免硬编码
-  IMAGE: ghcr.io/${{ toLower(github.repository) }}
+  IMAGE: ghcr.io/${{ lower(github.repository) }}
 
 jobs:
   build:
@@ -47,4 +47,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.IMAGE }}:${{ toLower(github.ref_name) }}
+          tags: ${{ env.IMAGE }}:${{ lower(github.ref_name) }}
