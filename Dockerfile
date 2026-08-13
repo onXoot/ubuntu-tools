@@ -56,7 +56,9 @@ RUN npm i -g @openai/codex-sdk@0.147.0  \
 	&& mv /opt/node/lib/node_modules/\@openai/codex-sdk/node_modules/\@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/bin/codex /usr/bin/ \
 	&& npm uninstall -g @openai/codex-sdk@0.147.0  \
 	&& rm -rf  /opt/node/lib/node_modules/\@openai
-
-
+# 删除 npm 缓存
+RUN rm -rf /root/.npm
+# 替换ll alias 
+RUN sed -i "s/alias ll='ls -alF'/alias ll='ls -lh'/" ~/.bashrc
 # 保持容器存活，进入容器用 kubectl exec / docker exec 起 bash
 ENTRYPOINT ["sleep", "infinity"]
