@@ -5,10 +5,6 @@ on:
     tags:
       - 'v*'
 
-env:
-  # 使用仓库属主/仓库名动态生成镜像地址，避免硬编码
-  IMAGE: ghcr.io/${{ lower(github.repository) }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,6 +15,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # GHCR 要求镜像名全小写；表达式不支持大小写转换函数，用 shell 转换后写入环境变量
+      - name: Compute lowercase image ref
+        run: |
+          REPO_LC="$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')"
+          REF_LC="$(echo '${{ github.ref_name }}' | tr '[:upper:]' '[:lower:]')"
+          echo "IMAGE=ghcr.io/${REPO_LC}" >> "$GITHUB_ENV"
+          echo "TAG=${REF_LC}" >> "$GITHUB_ENV"
 
       # node-v24.19.0-linux-x64 被 .gitignore 排除，需要先下载解压到构建上下文
       - name: Download and extract Node.js
@@ -47,4 +51,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.IMAGE }}:${{ lower(github.ref_name) }}
+          tags: ${{ env.IMAGE }}:${{ env.TAG }}
